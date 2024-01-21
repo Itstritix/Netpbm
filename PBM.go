@@ -101,11 +101,14 @@ func (pbm *PBM) Save(filename string) error {
 		file.Close()
 		return err
 	}
+
+	// Write magic number to the save
 	_, err = fmt.Fprintln(file, pbm.magicNumber)
 	if err != nil {
 		return err
 	}
 
+	// Write width and height to the save
 	fmt.Fprintln(file, pbm.width, pbm.height)
 
 	for y := 0; y < pbm.height; y++ {
