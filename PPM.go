@@ -117,17 +117,21 @@ func (ppm *PPM) Save(filename string) error {
 		file.Close()
 		return err
 	}
-	// Insert
+	// Write magic number to the save
 	_, err = fmt.Fprintln(file, ppm.magicNumber)
 	if err != nil {
 		file.Close()
 		return err
 	}
+
+	// Write width and height to the save
 	_, err = fmt.Fprintln(file, ppm.width, ppm.height)
 	if err != nil {
 		file.Close()
 		return err
 	}
+
+	// Write max value to the save
 	_, err = fmt.Fprintln(file, ppm.max)
 	if err != nil {
 		file.Close()
